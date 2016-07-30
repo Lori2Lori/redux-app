@@ -1,0 +1,14 @@
+{
+  "name": "redux-app",
+  "version": "1.0.0",
+  "description": "Simple redux app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Lori2lori",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^3.5.2"
+  }
+}
