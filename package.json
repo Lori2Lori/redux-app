@@ -5,14 +5,23 @@
   "main": "index.js",
   "repository": "https://github.com/Lori2Lori/redux-app",
   "scripts": {
-    "test": "test"
+    "test": "watchify --debug --entry tests.js -o tests-compiled.js",
+    "develop": "watchify --debug --entry index.js -o compiled.js",
+    "todo": "watchify --debug --entry todo.js -o todo-compiled.js"
   },
   "author": "Lori2lori",
   "license": "ISC",
   "dependencies": {
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-hyperscript": "^2.4.0",
     "redux": "^3.5.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4"
+    "babel-cli": "^6.11.4",
+    "browserify": "^13.1.0",
+    "deep-freeze": "0.0.1",
+    "expect": "^1.20.2",
+    "watchify": "^3.7.0"
   }
 }
