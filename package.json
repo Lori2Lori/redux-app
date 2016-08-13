@@ -7,7 +7,8 @@
   "scripts": {
     "test": "watchify --debug --entry tests.js -o tests-compiled.js",
     "develop": "watchify --debug --entry index.js -o compiled.js",
-    "todo": "watchify --debug --entry todo.js -o todo-compiled.js"
+    "todo-tests": "watchify --debug --transform babelify --entry todo-tests.js  --outfile todo-tests-compiled.js",
+    "todo": "watchify --debug --transform babelify --entry todo.js  --outfile todo-compiled.js"
   },
   "author": "Lori2lori",
   "license": "ISC",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-es2016": "^6.11.3",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "deep-freeze": "0.0.1",
     "expect": "^1.20.2",
