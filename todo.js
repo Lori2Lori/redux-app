@@ -39,19 +39,6 @@ const visibilityFilter = (
   }
 }
 
-const todoApp = (state = {}, action) => {
-  return {
-    todos: todos(
-      state.todos,
-      action
-    ),
-    visibilityFilter: visibilityFilter(
-      state.visibilityFilter,
-      action
-    )
-  };
-};
-
 //Reducer
 
 const todos = (state = [], action) => {
@@ -66,6 +53,27 @@ const todos = (state = [], action) => {
   }
 
 };
+
+const {combineReducers} = Redux;
+const todoApp = combineReducers(
+  { todos: todos
+  , visibilityFilter: visibilityFilter
+  }
+);
+
+//It's the same as combineReducers
+// const todoApp = (state = {}, action) => {
+//   return {
+//     todos: todos(
+//       state.todos,
+//       action
+//     ),
+//     visibilityFilter: visibilityFilter(
+//       state.visibilityFilter,
+//       action
+//     )
+//   };
+// };
 
 //Tests
 
