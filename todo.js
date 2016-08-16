@@ -1,5 +1,6 @@
 const deepFreeze = require('deep-freeze');
 const expect = require('expect');
+const Redux = require('redux')
 
 //Reducer composition
 //Reducer
@@ -24,6 +25,32 @@ const todo = (state, action) => {
   }
 };
 
+//Reducer
+
+const visibilityFilter = (
+  state = "SHOW_ALL",
+  action
+) => {
+  switch (action.type) {
+    case "SET_VISIBILITY_FILTER":
+      return action.filter;
+    default:
+      return state;
+  }
+}
+
+const todoApp = (state = {}, action) => {
+  return {
+    todos: todos(
+      state.todos,
+      action
+    ),
+    visibilityFilter: visibilityFilter(
+      state.visibilityFilter,
+      action
+    )
+  };
+};
 
 //Reducer
 
@@ -34,10 +61,8 @@ const todos = (state = [], action) => {
         ...state,
         todo(undefined,action)
       ];
-    case 'TOGGLE_TODO':
-      return state.map(t => todo(t,action));
     default:
-      return state;
+      return state.map(t => todo(t,action));
   }
 
 };
@@ -110,3 +135,32 @@ const testToggleTodo = () => {
 testAddTodo();
 testToggleTodo();
 console.log("All tests passed.");
+
+
+const {createStore} = Redux;
+const store = createStore(todoApp);
+
+console.log("Dispatching ADD_TODO");
+store.dispatch({
+  type: "ADD_TODO",
+  id: 1,
+  text: "Go shopping"
+})
+console.log("Current state:");
+console.log(store.getState());
+console.log("----------------");
+
+console.log("Dispatching TOGGLE_TODO");
+store.dispatch({
+  type: "TOGGLE_TODO",
+  id: 0
+})
+console.log("Current state:");
+console.log(store.getState());
+console.log("----------------");
+
+console.log("Dispatching visibilityFilter SHOW_ALL");
+store.dispatch({
+  type: "SHOW_ALL",
+  id: 0
+})
