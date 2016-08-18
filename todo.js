@@ -54,7 +54,22 @@ const todos = (state = [], action) => {
 
 };
 
-const {combineReducers} = Redux;
+//combineReducers from scratch
+const combineReducers = (reducers) => {
+  return (state = {}, action) => {
+    return Object.keys(reducers).reduce((nextState, key) => {
+      nextState[key] = reducers[key](
+        state[key],
+        action
+        );
+        return nextState;
+      },
+      {}
+    );
+  };
+}
+
+// const {combineReducers} = Redux;
 const todoApp = combineReducers(
   { todos: todos
   , visibilityFilter: visibilityFilter
